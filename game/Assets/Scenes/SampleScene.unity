@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 39590600}
   - component: {fileID: 39590602}
   - component: {fileID: 39590601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 465679002}
   - component: {fileID: 465679004}
   - component: {fileID: 465679003}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 597154593}
   - component: {fileID: 597154595}
   - component: {fileID: 597154594}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 836307850}
   - component: {fileID: 836307852}
   - component: {fileID: 836307851}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 916841530}
   - component: {fileID: 916841532}
   - component: {fileID: 916841531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 1337627108}
   - component: {fileID: 1337627110}
   - component: {fileID: 1337627109}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 1364536128}
   - component: {fileID: 1364536130}
   - component: {fileID: 1364536129}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 1374380837}
   - component: {fileID: 1374380839}
   - component: {fileID: 1374380838}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1221,7 +1221,7 @@ GameObject:
   - component: {fileID: 1664102112}
   - component: {fileID: 1664102114}
   - component: {fileID: 1664102113}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1332,7 +1332,7 @@ GameObject:
   - component: {fileID: 1863804686}
   - component: {fileID: 1863804688}
   - component: {fileID: 1863804687}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,7 +1443,7 @@ GameObject:
   - component: {fileID: 1887712160}
   - component: {fileID: 1887712162}
   - component: {fileID: 1887712161}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1554,7 +1554,7 @@ GameObject:
   - component: {fileID: 1918766087}
   - component: {fileID: 1918766089}
   - component: {fileID: 1918766088}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset-sliced_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1684,7 +1684,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 2015798058}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 451efc027d15e65418b800725e7a412c, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1793,6 +1793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  jumpPower: 100
   groundCheckCollider: {fileID: 1578374407}
   groundLayer:
     serializedVersion: 2

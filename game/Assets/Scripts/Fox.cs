@@ -5,7 +5,9 @@ using UnityEngine;
 public class Fox : MonoBehaviour
 {
 
-    public float speed = 1f;
+    [SerializeField] float speed = 1f;
+    [SerializeField] float jumpPower = 300f;
+
 
     Rigidbody2D rb;
     Animator animator;
@@ -14,9 +16,10 @@ public class Fox : MonoBehaviour
     const float groundCheckRadius = 0.2f;
     float horizontalValue;
     float runSpeedModifier = 2f;
-    bool isRunning = false;
+    bool isRunning;
     bool facingRight = true;
-    public bool isGrounded = false;
+    public bool isGrounded;
+    bool jump;
 
     void Awake() {    
         rb = GetComponent<Rigidbody2D>();
@@ -38,10 +41,15 @@ public class Fox : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
             isRunning = false;
         }
+
+        if(Input.GetButtonDown("Jump"))
+            jump = true;
+        else if(Input.GetButtonUp("Jump"))
+            jump = false;
     }
 
     private void FixedUpdate() {
-        Move(horizontalValue);
+        Move(horizontalValue,jump);
         GroundCheck();
     }
 
@@ -57,7 +65,17 @@ public class Fox : MonoBehaviour
             isGrounded = true;
     }
 
-    void Move(float dir) {
+    void Move(float dir,bool jumpFlag) 
+    {
+        if(isGrounded && jumpFlag) 
+        {
+            isGrounded = false;
+            jumpFlag = false;
+            rb.AddForce(new Vector2(0f,jumpPower));
+        }
+
+        #region Move & Run
+
         float xVal = dir * speed * 100 * Time.deltaTime;
         
         if(isRunning) {
@@ -78,6 +96,7 @@ public class Fox : MonoBehaviour
         }
 
         animator.SetFloat("xVelocity",Mathf.Abs(rb.velocity.x));
+        #endregion
     }
 
     private void OnDrawGizmos() {
