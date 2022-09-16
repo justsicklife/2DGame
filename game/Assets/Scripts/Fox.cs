@@ -11,15 +11,20 @@ public class Fox : MonoBehaviour
 
     Rigidbody2D rb;
     Animator animator;
+    [SerializeField] Collider2D standingCollider;
     [SerializeField] Transform groundCheckCollider;
+    [SerializeField] Transform overheadCheckCollider;
     [SerializeField] LayerMask groundLayer;
     const float groundCheckRadius = 0.2f;
+    const float overheadCheckRadius = 0.2f;
     float horizontalValue;
     float runSpeedModifier = 2f;
     bool isRunning;
     bool facingRight = true;
     public bool isGrounded;
     bool jump;
+    bool crouchPressed;
+    float crouchSpeedModifier = 0.5f;
 
     void Awake() {    
         rb = GetComponent<Rigidbody2D>();
@@ -46,10 +51,15 @@ public class Fox : MonoBehaviour
             jump = true;
         else if(Input.GetButtonUp("Jump"))
             jump = false;
+
+        if(Input.GetButtonDown("Crouch"))
+            crouchPressed = true;
+        else if(Input.GetButtonUp("Crouch"))
+            crouchPressed = false;
     }
 
     private void FixedUpdate() {
-        Move(horizontalValue,jump);
+        Move(horizontalValue,jump,crouchPressed);
         GroundCheck();
     }
 
@@ -65,14 +75,34 @@ public class Fox : MonoBehaviour
             isGrounded = true;
     }
 
-    void Move(float dir,bool jumpFlag) 
+    void Move(float dir,bool jumpFlag,bool crouchFlag) 
     {
-        if(isGrounded && jumpFlag) 
+        #region Jump & Crouch
+
+        if(!crouchFlag) 
         {
-            isGrounded = false;
-            jumpFlag = false;
-            rb.AddForce(new Vector2(0f,jumpPower));
+            if(Physics2D.OverlapCircle(overheadCheckCollider.position,overheadCheckRadius,groundLayer))
+            {
+                crouchFlag = true;
+            }
         }
+
+        if(isGrounded)
+        {
+            standingCollider.enabled = !crouchFlag;
+
+            if(jumpFlag) 
+            {
+                isGrounded = false;
+                jumpFlag = false;
+                rb.AddForce(new Vector2(0f,jumpPower));
+            }
+        }
+
+        animator.SetBool("Crouch",crouchFlag);
+
+
+        #endregion
 
         #region Move & Run
 
@@ -81,6 +111,10 @@ public class Fox : MonoBehaviour
         if(isRunning) {
             xVal *= runSpeedModifier;
         }
+        
+        if(crouchFlag) 
+            xVal *= crouchSpeedModifier;
+
         Vector2 targetVelocity = new Vector2(xVal,rb.velocity.y);
         rb.velocity = targetVelocity;
 
